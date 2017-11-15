@@ -21,7 +21,6 @@ namespace eval fnSuppliesByLevel1 {
     pack [labelframe $frame.unit -text "Unidad"] -side left
     pack [labelframe $frame.type -text "Tipo"] -side left
     pack [labelframe $frame.cost -text "Valor Unitario"] -side left
-    pack [labelframe $frame.qop -text "Rdto"] -side left
     pack [labelframe $frame.partial -text "Costo Total"] -side left
     chan puts $MAIN::chan [array get event]
   }
@@ -54,7 +53,7 @@ namespace eval fnSuppliesByLevel1 {
         labelentry::setup [array get conf] [array get rowsupply]
       }
     }
-    foreach param [list qop quantity cost partial] {
+    foreach param [list quantity cost partial] {
       set fr $frame.$param.$id
       if { $param == "cost" } {
         array set rowsupply [deserialize $response(row)]
@@ -111,7 +110,7 @@ namespace eval fnSuppliesByLevel1 {
         labelentry::setup [array get conf] [array get rowsupply]
       }
     }
-    foreach param [list qop quantity] {
+    foreach param [list quantity] {
       set fr $frame.$param.$id
       pack [frame $fr] -fill x -expand true
       pack [label $fr.label -text "[format'currency $row($param)]"] \
