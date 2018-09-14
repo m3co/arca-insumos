@@ -16,6 +16,7 @@
     header: header,
     fields: fields,
     actions: [],
+    validations: [],
     idkey: 'id',
   });
 
