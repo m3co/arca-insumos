@@ -1,17 +1,21 @@
 'use strict';
 ((io) => {
   var client = io();
+  var ProjectId = location.search.match(/\d+$/);
   client.on('connect', () => {
     console.log('connection');
 
-    client.emit('data', {
-      query: 'select',
-      module: 'Supplies',
-    });
+    if (ProjectId) {
+      client.emit('data', {
+        query: 'select',
+        module: 'viewSupplies1',
+        project: ProjectId
+      });
+    }
 
     client.emit('data', {
-      query: 'subscribe',
-      module: 'Supplies'
+      query: 'select',
+      module: 'Projects',
     });
   });
 
@@ -20,12 +24,14 @@
     var row = data.row;
     var action;
     if (row) {
-      if (data.module == 'Supplies') {
+      if (data.module == 'viewSupplies1') {
         action = supplies[`do${query}`];
         if (action) { action(row); }
         else {
-          console.log('sin procesar Supplies');
+          console.log('sin procesar viewSupplies1');
         }
+      } else if (query == 'select' && data.module == 'Projects') {
+        window.projects.doselect(data.row);
       } else {
         console.log('sin procesar', data);
       }
