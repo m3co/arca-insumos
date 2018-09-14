@@ -2,14 +2,14 @@
 (() => {
 
   const fields = [
-    'id',
+    'AAUId', 'SupplyId',
     'description',
     'cost',
     'type',
     'unit'
   ];
 
-  const header = ['', 'Descripcion', 'Costo', 'Tipo', 'Unidad'];
+  const header = ['APU', 'Insumo', 'Descripcion', 'Costo', 'Tipo', 'Unidad'];
 
   window.supplies = setupTable({
     module: 'Supplies',

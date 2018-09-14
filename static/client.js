@@ -8,7 +8,7 @@
     if (ProjectId) {
       client.emit('data', {
         query: 'select',
-        module: 'viewSupplies1',
+        module: 'fnViewSuppliesLevel',
         project: ProjectId
       });
     }
@@ -24,11 +24,11 @@
     var row = data.row;
     var action;
     if (row) {
-      if (data.module == 'viewSupplies1') {
+      if (data.module == 'fnViewSuppliesLevel') {
         action = supplies[`do${query}`];
         if (action) { action(row); }
         else {
-          console.log('sin procesar viewSupplies1');
+          console.log('sin procesar fnViewSuppliesLevel');
         }
       } else if (query == 'select' && data.module == 'Projects') {
         window.projects.doselect(data.row);
