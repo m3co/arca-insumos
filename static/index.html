@@ -31,19 +31,34 @@
     <div class="tooltip" style="opacity:0;"></div>
     <selector-projects></selector-projects>
     <select id="Levels">
-      <caption>Niveles por</caption>
       <option value="1">Proyecto</option>
       <option value="2">Captitulos</option>
       <option value="3">Subcapitulos</option>
       <option value="4">items</option>
     </select>
+    <select id="Supply_type">
+      <option value="">-</option>
+      <option value="Material">Material</option>
+      <option value="Mano de Obra">Mano de Obra</option>
+      <option value="Equipo">Equipo</option>
+      <option value="Herramienta">Herramienta</option>
+      <option value="Transporte">Transporte</option>
+      <option value="Subcontrato">Subcontrato</option>
+    </select>
     <script>
       'use strict';
+      var urlparams = new URLSearchParams(window.location.search);
       document.querySelector('#Levels').addEventListener('change', e => {
-        var urlparams = new URLSearchParams(window.location.search);
         urlparams.set('level', e.target.value);
         window.location.search = urlparams.toString();
       });
+      document.querySelector('#Levels').value = urlparams.get('level') || '';
+
+      document.querySelector('#Supply_type').addEventListener('change', e => {
+        urlparams.set('type', e.target.value);
+        window.location.search = urlparams.toString();
+      });
+      document.querySelector('#Supply_type').value = urlparams.get('type') || '';
 
       window.projects = {
         doselect: document.querySelector('selector-projects').doselect

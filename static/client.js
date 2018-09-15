@@ -3,17 +3,20 @@
   var client = io();
   var params = new URLSearchParams(window.location.search);
   var ProjectId = params.get('ProjectId');
+  var type = params.get('type') || '';
   var level = Number(params.get('level') || 1);
   client.on('connect', () => {
     console.log('connection');
 
     if (ProjectId) {
-      client.emit('data', {
+      const req = {
         query: 'select',
         module: 'fnViewSuppliesLevel',
         project: ProjectId,
         level: level
-      });
+      };
+      if (type) { req.type = type; }
+      client.emit('data', req);
     }
 
     client.emit('data', {
