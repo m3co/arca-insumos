@@ -1,7 +1,9 @@
 'use strict';
 ((io) => {
   var client = io();
-  var ProjectId = location.search.match(/\d+$/);
+  var params = new URLSearchParams(window.location.search);
+  var ProjectId = params.get('ProjectId');
+  var level = Number(params.get('level') || 1);
   client.on('connect', () => {
     console.log('connection');
 
@@ -9,7 +11,8 @@
       client.emit('data', {
         query: 'select',
         module: 'fnViewSuppliesLevel',
-        project: ProjectId
+        project: ProjectId,
+        level: level
       });
     }
 

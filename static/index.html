@@ -30,8 +30,21 @@
   <body style="width: 100%; height: 100%;">
     <div class="tooltip" style="opacity:0;"></div>
     <selector-projects></selector-projects>
+    <select id="Levels">
+      <caption>Niveles por</caption>
+      <option value="1">Proyecto</option>
+      <option value="2">Captitulos</option>
+      <option value="3">Subcapitulos</option>
+      <option value="4">items</option>
+    </select>
     <script>
       'use strict';
+      document.querySelector('#Levels').addEventListener('change', e => {
+        var urlparams = new URLSearchParams(window.location.search);
+        urlparams.set('level', e.target.value);
+        window.location.search = urlparams.toString();
+      });
+
       window.projects = {
         doselect: document.querySelector('selector-projects').doselect
       };
