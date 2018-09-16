@@ -19,7 +19,7 @@
       name: 'cost',
       reflectidkey: 'SupplyId',
       idkey: 'id',
-      excludeFields: ['qop']
+      excludeFields: ['qop', 'quantity']
     },
     {
       key: 'type',
