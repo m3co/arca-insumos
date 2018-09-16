@@ -2,10 +2,29 @@
 (() => {
 
   const fields = [
-    'AAUId', 'SupplyId',
-    'description',
-    'cost',
-    'type',
+    {
+      key: 'AAUId',
+      readonly: true
+    },
+    {
+      key: 'SupplyId',
+      readonly: true
+    },
+    {
+      key: 'description',
+      readonly: true
+    },
+    {
+      key: 'cost',
+      name: 'cost',
+      reflectidkey: 'SupplyId',
+      idkey: 'id',
+      excludeFields: ['qop']
+    },
+    {
+      key: 'type',
+      readonly: true
+    },
     {
       key: 'Quantity',
       call: (selection) => {
@@ -14,7 +33,10 @@
         });
       }
     },
-    'unit',
+    {
+      key: 'unit',
+      readonly: true
+    },
     {
       key: 'PartialCost',
       call: (selection) => {
